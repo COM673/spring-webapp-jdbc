@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link Bootstrap 4 from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    
+    <title>Products</title>
+</head>
+<body>
+    <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+
+    <p></p>
+    <p></p>
+    <!-- Bootstrap-->
+    <div class="container">
+        <!-- Content row with 2 columns-->
+        <div class="row">
+            <!-- Column 1 - Categories List -->
+            <div class="col-sm-3">
+                <ul class="list-group" th:if="${not #lists.isEmpty(categories)}">
+                    <li class="list-group-item"><a href="/products/?cat=0">All</a></li>
+                    <!-- Repeating <li> - for each category -->
+                    <li class="list-group-item" th:each="category : ${categories}">
+                        <a href="#" th:href="@{'/products/?cat=' + ${category.CategoryId}}" th:text="${category.CategoryName}"></a>
+                    </li>
+                </ul>
+            </div> <!-- End Categories col-->
+
+
+            <!-- Column 2 - Product List -->
+            <div class="col-sm-9">
+                <h3>Products</h3>
+                <!-- Add table if the products list contains products-->
+                <!-- Bootstrap: https://getbootstrap.com/docs/4.0/content/tables/-->
+                <table class="table table-bordered table-striped" th:if="${not #lists.isEmpty(products)}">
+                    <!-- Table header row -->
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                    </tr>
+                    <!-- Inser a row for each product in the list -->
+                    <tr th:each="product : ${products}">
+                        <td th:text="${product.ProductId}"></td>
+                        <td th:text="${product.ProductName}">Product Name</td>
+                        <td th:text="${product.ProductDescription}">description</td>
+                        <td th:text="${product.ProductStock}">stock</td>
+                        <!-- Format the number with two decimal places -->
+                        <td class="text-right" th:text="${'€ ' + #numbers.formatDecimal(product.ProductPrice, 0, 2)}">price</td>
+                    </tr>
+                </table> <!-- End table -->
+            </div> <!-- End Products col -->
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+
+    <!-- JavaScript dependencies for Bootstrap 4-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

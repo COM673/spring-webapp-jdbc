@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"></html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <!-- BootStrap 4 Nav-->
+    <!-- https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp -->
+    <!-- https://getbootstrap.com/docs/4.0/components/navbar/ -->
+
+    <div th:fragment="navigation">
+        <!-- Site Navigation fragment -->
+        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="/" th:href="@{/}">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about" th:href="@{/about}">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="/products" th:href="@{/products}">Products</a></li>
+            </ul>
+        </nav>
+        <!-- End Site Navigation fragment -->
+    </div>
+</body>
+</html>
