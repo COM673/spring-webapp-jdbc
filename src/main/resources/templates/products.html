@@ -33,6 +33,10 @@
             <!-- Column 2 - Product List -->
             <div class="col-sm-9">
                 <h3>Products</h3>
+                <!-- https://www.w3schools.com/bootstrap4/bootstrap_buttons.asp -->
+                <p>
+                    <a href="/newProduct" th:href="@{/newProduct}" class="btn btn-outline-primary" role="button">Add Product</a>
+                </p>
                 <!-- Add table if the products list contains products-->
                 <!-- Bootstrap: https://getbootstrap.com/docs/4.0/content/tables/-->
                 <table class="table table-bordered table-striped" th:if="${not #lists.isEmpty(products)}">
@@ -54,6 +58,9 @@
                         <td class="text-right" th:text="${'€ ' + #numbers.formatDecimal(product.ProductPrice, 0, 2)}">price</td>
                     </tr>
                 </table> <!-- End table -->
+                <p>
+                    <a href="/newProduct" th:href="@{/newProduct}" class="btn btn-outline-primary" role="button">Add Product</a>
+                </p>
             </div> <!-- End Products col -->
         </div> <!-- End row -->
     </div> <!-- End container -->

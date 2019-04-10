@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link Bootstrap 4 from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>Products</title>
+</head>
+<body>
+    <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+    <p></p>
+    <p></p>
+    <!-- Bootstrap-->
+    <div class="container">
+        <!-- Content row with 2 columns-->
+        <div class="row">
+            <!-- Column 1 - Categories List -->
+            <div class="col-sm-3">
+
+            </div> <!-- End Categories col-->
+
+            <!-- Column 2 - Product List -->
+            <div class="col-sm-9">
+                <h3>Add Product</h3>
+                <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+                <form th:object="${product}" th:action="@{/newProduct}" method="post" class="needs-validation">
+                    <input type="hidden" th:field="*{ProductId}"/>
+                    <div class="form-group">
+                        <label for="productName">Product Name</label>
+                        <input th:field="*{ProductName}" type="text" class="form-control" placeholder=""  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productDecription">Product Description</label>
+                        <input th:field="*{ProductDescription}" type="text" class="form-control" placeholder=""  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productCategory">Category</label>
+                        <select th:field="*{CategoryId}" class="form-control" required>
+                            <option value="0">choose category</option>
+                            <option th:each="cat : ${categories}"
+                                th:value="${cat.CategoryId}"
+                                th:utext="${cat.CategoryName}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productStock">Stock level</label>
+                        <input th:field="*{ProductStock}" type="number" class="form-control" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">Price</label>
+                        <input th:field="*{ProductPrice}" type="number" class="form-control" placeholder="10.00" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div> <!-- End Products col -->
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+
+    <!-- JavaScript dependencies for Bootstrap 4-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+</body>
+</html>

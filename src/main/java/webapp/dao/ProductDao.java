@@ -15,4 +15,7 @@ public interface ProductDao {
 	// return a list of products in a category
 	public List<Product> findByCategory(int id);
 
+	// Create a new product
+	public Product create(final Product product);
+
 }

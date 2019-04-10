@@ -94,4 +94,35 @@ public class ApplicationController {
         // Return the view
         return "products";
     }
+
+        // The newProduct page will be accessed using /newProduct from the browser
+        @RequestMapping(value = "/newProduct", method = RequestMethod.GET)
+        public String newProduct(Model model) {
+
+            // add empty Product to the model 
+            model.addAttribute("product", new Product());
+
+            // Get a list of categories and add to the model
+            List<Category> categories = categoryData.findAll();
+            model.addAttribute("categories", categories);
+
+            // Return the view
+            return "newProduct";
+        }
+
+        // Handle form submit via HTTP POST
+        @RequestMapping(value = "/newProduct", method = RequestMethod.POST)
+        // Form data will be supplied as a filled in Product object
+        public String createProduct(Product product) {
+
+            // Use the Dao to create the new product
+            // To do: check for errors and return to form if any found
+            // https://www.journaldev.com/2668/spring-validation-example-mvc-validator
+            productData.create(product);
+
+            // Redirect back to the products list
+            // To do: Open a page showing the new product in its own page
+            return "redirect:/products";
+        }
+
 }
